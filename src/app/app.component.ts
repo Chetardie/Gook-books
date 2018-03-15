@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import * as firebase from 'firebase';
 
+import { environment } from '../environments/environment';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,8 +11,8 @@ import * as firebase from 'firebase';
 export class AppComponent implements OnInit {
     ngOnInit() {
         firebase.initializeApp({
-            apiKey: 'AIzaSyCwziy3qqY_9CCTX2n06N7lC8quH3Tc1vQ',
-            authDomain: 'gook-books.firebaseapp.com'
+            apiKey: environment.firebaseApiKey,
+            authDomain: environment.firebaseAuthDomain
         });
     }
 }
