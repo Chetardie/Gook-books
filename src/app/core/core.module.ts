@@ -9,13 +9,15 @@ import { AuthGuardService } from '../auth/auth-guard.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../shared/auth.interceptor';
 
+import { SharedModule } from '../shared/shared.module';
+
 @NgModule({
   declarations: [
     HeaderComponent,
     HomeComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     AppRoutingModule
   ],
   exports: [
