@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { FormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
@@ -11,7 +12,9 @@ import { AuthRoutingModule } from './auth-routing.module';
     RegisterComponent
   ],
   imports: [
+    BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AuthRoutingModule
   ]
 })
