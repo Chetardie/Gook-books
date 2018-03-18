@@ -14,7 +14,7 @@
               id="email" name="email"
               class="form-control">
             <span
-              *ngIf="!loginForm.get('Email').valid"
+              *ngIf="!loginForm.get('Email').valid; else success"
               class="invalid-feedback">Please provide correct email address.</span>
           </div>
           <div class="form-group">
@@ -26,7 +26,7 @@
               name="password"
               class="form-control">
             <span
-              *ngIf="!loginForm.get('Password').valid"
+              *ngIf="!loginForm.get('Password').valid; else success"
               class="invalid-feedback">Must be at least 6 characters long.</span>
           </div>
           <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Sign In</button>
@@ -35,3 +35,5 @@
     </div>
   </div>
 </div>
+
+<ng-template #success><small class="valid-feedback">Look's okay.</small></ng-template>

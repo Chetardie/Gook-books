@@ -15,7 +15,7 @@
 							name="email"
 							class="form-control">
 						<span
-							*ngIf="!registerForm.get('Email').valid"
+							*ngIf="!registerForm.get('Email').valid; else success"
 							class="invalid-feedback">Please provide correct email address.</span>
 					</div>
 					<div class="form-group">
@@ -27,7 +27,7 @@
 							name="password"
 							class="form-control">
 						<span
-							*ngIf="!registerForm.get('Password').valid"
+							*ngIf="!registerForm.get('Password').valid; else success"
 				      class="invalid-feedback">Must be at least 6 characters long.</span>
 					</div>
 					<button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid">Sign Up</button>
@@ -37,5 +37,5 @@
 	</div>
 </div>
 
-<ng-template>Look's okay.</ng-template>
+<ng-template #success><small class="valid-feedback">Look's okay.</small></ng-template>
 
