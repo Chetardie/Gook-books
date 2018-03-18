@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'gook-header',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onLogout() {
+    this.authService.logOut();
+    this.router.navigate(['/signin']);
   }
 
 }
