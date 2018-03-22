@@ -1,0 +1,15 @@
+<ng-content></ng-content>
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click)="onNewBookAdd()">New Book</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <gook-book-item
+      *ngFor="let bookItem of books; let i = index"
+      [book]="bookItem"
+      [index]="i"></gook-book-item>
+  </div>
+</div>
