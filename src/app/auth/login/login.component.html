@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
+<div class="row justify-content-center login-block">
+  <div class="col-xs-12 col-sm-10 col-md-6 col-lg-4">
     <div class="card">
       <div class="card-header text-center">
         Login into Gook-Books
@@ -7,7 +7,7 @@
       <div class="card-body">
         <form (ngSubmit)="onSignin()" [formGroup]="loginForm">
           <div class="form-group">
-            <label for="email">Mail</label>
+            <label for="email">Email address</label>
             <input [ngClass]="{ 'is-invalid': !loginForm.get('Email').valid, 'is-valid': loginForm.get('Email').valid }"
               formControlName="Email"
               type="email"
@@ -29,7 +29,7 @@
               *ngIf="!loginForm.get('Password').valid; else success"
               class="invalid-feedback">Must be at least 6 characters long.</span>
           </div>
-          <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Sign In</button>
+          <button class="btn btn-success btn-block" type="submit" [disabled]="!loginForm.valid">Sign In</button>
         </form>
       </div>
     </div>

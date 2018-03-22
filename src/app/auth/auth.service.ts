@@ -5,9 +5,15 @@ import * as firebase from 'firebase';
 
 @Injectable()
 export class AuthService {
-  token: string;
-
   constructor(private router: Router) {
+  }
+
+  static get Token(): string {
+    return sessionStorage.getItem('token');
+  }
+
+  static set Token(token: string) {
+    sessionStorage.setItem('token', token);
   }
 
   public registerUser(email: string, password: string): void {
@@ -20,23 +26,23 @@ export class AuthService {
         .then(response => {
           this.router.navigate([ '/' ]);
           firebase.auth().currentUser.getToken()
-              .then((token: string) => this.token = token);
+            .then((token: string) => AuthService.Token = token);
         })
         .catch(error => console.log(error));
   }
 
   public logOut(): void {
     firebase.auth().signOut();
-    this.token = null;
+    sessionStorage.removeItem('token');
   }
 
   public getToken(): string {
     firebase.auth().currentUser.getToken()
-        .then((token: string) => this.token = token);
-    return this.token;
+        .then((token: string) => AuthService.Token = token);
+    return AuthService.Token;
   }
 
   public isAuthenticated(): boolean {
-    return this.token != null;
+    return AuthService.Token != null;
   }
 }

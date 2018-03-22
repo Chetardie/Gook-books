@@ -1,5 +1,5 @@
-<div class="row">
-	<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
+<div class="row justify-content-center register-block">
+	<div class="col-xs-12 col-sm-10 col-md-6 col-lg-4">
 		<div class="card">
 			<div class="card-header text-center">
 				Create new account
@@ -7,7 +7,7 @@
 			<div class="card-body">
 				<form (ngSubmit)="onSignup()" [formGroup]="registerForm">
 					<div class="form-group">
-						<label for="email">Mail</label>
+						<label for="email">Email address</label>
 						<input [ngClass]="{ 'is-invalid': !registerForm.get('Email').valid, 'is-valid': registerForm.get('Email').valid  }"
 							formControlName="Email"
 							type="email"
@@ -30,7 +30,7 @@
 							*ngIf="!registerForm.get('Password').valid; else success"
 				      class="invalid-feedback">Must be at least 6 characters long.</span>
 					</div>
-					<button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid">Sign Up</button>
+					<button class="btn btn-success btn-block" type="submit" [disabled]="!registerForm.valid">Sign Up</button>
 				</form>
 			</div>
 		</div>
