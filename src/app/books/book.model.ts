@@ -3,7 +3,8 @@ interface IBook {
   description: string;
   imagePath: string;
 }
-export class Book implements  IBook{
+
+export class Book implements  IBook {
   public name: string;
   public description: string;
   public imagePath: string;
