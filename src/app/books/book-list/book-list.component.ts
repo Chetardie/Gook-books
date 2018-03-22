@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class BookListComponent implements OnInit {
   private booksSubscription: Subscription;
   public books: Book[];
+  public searchText: string;
 
   constructor(private router: Router, private activeRoute: ActivatedRoute, private booksService: BooksService) { }
 

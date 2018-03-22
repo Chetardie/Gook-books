@@ -1,65 +1,68 @@
 <div class="row">
-  <div class="col-xs-12">
-    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-      <div class="row">
-        <div class="col-xs-12">
-          <button
-            type="submit"
-            class="btn btn-success"
-            [disabled]="!bookForm.valid"
-          >Save</button>
-          <button
-            type="button"
-            class="btn btn-danger"
-            (click)="onCancel()">Cancel</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              formControlName="name"
-              class="form-control">
+  <div class="card w-100">
+    <div class="card-header">
+      Edit book
+    </div>
+    <div class="card-body">
+      <div class="col-xs-12">
+        <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="form-group w-100">
+              <label for="bookTitle" class="col-form-label-sm">Book title</label>
+              <input
+                type="text"
+                id="bookTitle"
+                formControlName="title"
+                class="form-control">
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group">
-            <label for="imagePath">Image Url</label>
-            <input
-              type="text"
-              id="imagePath"
-              formControlName="imagePath"
-              class="form-control"
-              #imagePath>
+          <div class="row">
+            <div class="form-group w-100">
+              <label for="description" class="col-form-label-sm">Short description</label>
+              <textarea
+                type="text"
+                id="description"
+                formControlName="description"
+                class="form-control"
+                rows="6">
+              </textarea>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <img
-              [src]="imagePath.value"
-              class="img-responsive">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea
-              type="text"
-              id="description"
-              formControlName="description"
-              class="form-control"
-              rows="6">
-            </textarea>
+          <div class="row">
+            <div class="form-group w-100">
+              <label for="author">Author</label>
+              <fieldset>
+                <div id="author" formGroupName="author">
+                  <div class="w-100">
+                    <label for="firstName" class="col-form-label-sm">Name: </label>
+                    <input
+                      id="firstName"
+                      formControlName="firstName"
+                      type="text"
+                      class="form-control">
+                  </div>
+                  <div class="w-100">
+                    <label for="lastName" class="col-form-label-sm">Surname: </label>
+                    <input
+                      id="lastName"
+                      formControlName="lastName"
+                      type="text"
+                      class="form-control">
+                  </div>
+                </div>
+              </fieldset>
+            </div>
           </div>
-        </div>
+          <button *ngIf="!editMode" class="btn btn-outline-success" type="submit" [disabled]="!bookForm.valid">Add book</button>
+          <button *ngIf="editMode" class="btn btn-outline-success" type="submit" [disabled]="!bookForm.valid">Save</button>
+          <button class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
 </div>
+
+
+
+
+

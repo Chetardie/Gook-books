@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+
 import { BooksService } from '../books.service';
+import { Book, IBookAuthor } from '../book.model';
 
 @Component({
   selector: 'gook-book-edit',
@@ -12,6 +14,7 @@ export class BookEditComponent implements OnInit {
   private id: number;
   public editMode: boolean = false;
   public bookForm: FormGroup;
+  public book: Book;
 
   constructor(private route: ActivatedRoute, private router: Router, private booksService: BooksService) {
   }
@@ -25,6 +28,7 @@ export class BookEditComponent implements OnInit {
           this.initForm();
         }
       );
+
   }
 
   public onSubmit(): void {
@@ -34,7 +38,6 @@ export class BookEditComponent implements OnInit {
       this.booksService.addBook(this.bookForm.value);
     }
     this.onCancel();
-    console.log(this.bookForm.getRawValue());
   }
 
   public onCancel(): void {
@@ -42,21 +45,27 @@ export class BookEditComponent implements OnInit {
   }
 
   private initForm(): void {
-    let bookName = '';
-    let bookImagePath = '';
+    let bookTitle = '';
+    let author: IBookAuthor = {
+      firstName: '',
+      lastName: ''
+    };
     let bookDescription = '';
 
     if (this.editMode) {
       const book = this.booksService.getBook(this.id);
-      bookName = book.name;
-      bookImagePath = book.imagePath;
+      bookTitle = book.title;
+      author = book.author;
       bookDescription = book.description;
     }
 
 
     this.bookForm = new FormGroup({
-      'name': new FormControl(bookName, Validators.required),
-      'imagePath': new FormControl(bookImagePath, Validators.required),
+      'title': new FormControl(bookTitle, Validators.required),
+      'author': new FormGroup({
+        'firstName': new FormControl(author.firstName, Validators.required),
+        'lastName': new FormControl(author.lastName, Validators.required)
+        }),
       'description': new FormControl(bookDescription, Validators.required)
     });
   }

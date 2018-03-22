@@ -8,8 +8,10 @@ export class BooksService {
   public booksListChanged = new Subject<Book[]>();
 
   private books: Book[] = [
-    new Book('Book 1', 'A super tasty schnitzel', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg'),
-    new Book('Books 2', 'What else  you need to say?', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg')
+    new Book({ title: 'Book 1', description: 'A super tasty schnitzel',
+      author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),
+    new Book({title: 'Books 2', description: 'What else  you need to say?',
+      author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}})
   ];
 
   constructor() { }
@@ -22,8 +24,8 @@ export class BooksService {
     return this.books[id];
   }
 
-  public addBook(book: Book): void {
-    this.books.push(book);
+  public addBook(bookInfo: Book): void {
+    this.books.push(new Book(bookInfo));
     this.booksListChanged.next(this.books.slice());
   }
 
