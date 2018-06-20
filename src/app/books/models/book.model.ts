@@ -1,15 +1,5 @@
-interface IBook {
-  title: string;
-  description: string;
-  author: IBookAuthor;
-  rate: number;
-  quotes: string[];
-}
-
-export interface IBookAuthor {
-  firstName: string;
-  lastName: string;
-}
+import { IBookAuthor } from './IBookAuthor';
+import { IBook } from './IBook';
 
 export class Book implements  IBook {
   public title: string;
