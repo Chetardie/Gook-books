@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'gook-login',
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -18,16 +19,23 @@ export class LoginComponent implements OnInit {
   }
 
   private initLoginForm(): void {
-    this.loginForm = this.formBuilder.group({
-      Email: [null, Validators.email],
-      Password: [null, Validators.minLength(6)]
+    // this.loginForm = this.formBuilder.group({
+    //   email: [null, Validators.email],
+    //   password: [null, Validators.minLength(6)]
+    // });
+    this.loginForm = new FormGroup({
+      email: new FormControl('', {
+        validators: [Validators.required, Validators.email]
+      }),
+      password: new FormControl('', { validators: [Validators.required] })
     });
   }
 
-  onSignin() {
-    const email = this.loginForm.value.Email;
-    const password = this.loginForm.value.Password;
+  onSubmit() {
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
     this.authService.loginUser(email, password);
+
   }
 
 }

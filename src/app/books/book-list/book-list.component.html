@@ -1,9 +1,17 @@
-<div class="row">
-  <div class="col-xs-12">
-    <button class="btn btn-success" (click)="onNewBookAdd()">New Book</button>
+<section >
+  <button class="add-btn" mat-raised-button color="primary" (click)="onNewBookAdd()">Add new book</button>
+  <mat-form-field class="search">
+    <input type="text" matInput placeholder="Search by title or author" aria-label="Search by title or author" aria-describedby="basic-addon2" [(ngModel)]="searchText">
+  </mat-form-field>
+  <div class="book-list">
+    <gook-book-item
+    *ngFor="let bookItem of books | filter: searchText; let i = index"
+    [book]="bookItem"
+    [index]="i">
+    </gook-book-item>
   </div>
-</div>
-<hr>
+</section>
+<!-- 
 <div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -21,4 +29,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

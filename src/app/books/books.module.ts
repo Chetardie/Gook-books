@@ -10,6 +10,7 @@ import { BookItemComponent } from './book-list/book-item/book-item.component';
 import { BooksService } from './books.service';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     BooksRoutingModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ],
   providers: [BooksService]
 })

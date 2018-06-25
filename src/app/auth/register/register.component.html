@@ -1,3 +1,38 @@
+<section>
+		<form
+			fxLayout="column"
+			fxLayoutAlign="center center"
+			fxLayoutGap="10px"
+			(ngSubmit)="onSignup()" 
+			[formGroup]="registerForm">
+			<h2>Create new account</h2>
+			<mat-form-field>
+				<input
+					type="email"
+					matInput
+					placeholder="Your email"
+					formControlName="email"
+					required>
+				<mat-hint>Please enter a valid email.</mat-hint>
+				<mat-error>Invalid or missing email.</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input
+					type="password"
+					matInput
+					placeholder="Your password"
+					formControlName="password"
+					required>
+				<mat-hint>Please enter your password.</mat-hint>
+				<mat-error>Missing password.</mat-error>
+			</mat-form-field>
+			<button  type="submit" mat-raised-button color="primary" [disabled]="registerForm.invalid">Submit</button>
+			<mat-spinner *ngIf="isLoading"></mat-spinner>
+		</form>
+	</section>
+
+
+<!-- 
 <div class="row justify-content-center register-block">
 	<div class="col-xs-12 col-sm-10 col-md-6 col-lg-4">
 		<div class="card">
@@ -37,5 +72,5 @@
 	</div>
 </div>
 
-<ng-template #success><small class="valid-feedback">Looks okay.</small></ng-template>
+<ng-template #success><small class="valid-feedback">Looks okay.</small></ng-template> -->
 
