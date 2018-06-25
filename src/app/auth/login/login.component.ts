@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'gook-login',
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -19,10 +18,6 @@ export class LoginComponent implements OnInit {
   }
 
   private initLoginForm(): void {
-    // this.loginForm = this.formBuilder.group({
-    //   email: [null, Validators.email],
-    //   password: [null, Validators.minLength(6)]
-    // });
     this.loginForm = new FormGroup({
       email: new FormControl('', {
         validators: [Validators.required, Validators.email]
@@ -35,7 +30,6 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     this.authService.loginUser(email, password);
-
   }
 
 }

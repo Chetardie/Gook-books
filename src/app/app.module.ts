@@ -14,8 +14,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { SideNavComponent } from './core/side-nav/side-nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatSidenavModule} from '@angular/material/sidenav';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,14 +23,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    SharedModule,
-    AuthModule,
-    CoreModule,
-    BooksModule,
     MaterialModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-    MatSidenavModule
+    SharedModule,
+    AuthModule,
+    CoreModule,
+    BooksModule
   ],
   bootstrap: [ AppComponent ]
 })

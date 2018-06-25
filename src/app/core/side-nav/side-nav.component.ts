@@ -14,11 +14,11 @@ export class SideNavComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClose() {
+  private onClose() {
     this.closeSidenav.emit();
   }
 
-  onLogout() {
+  private onLogout() {
     this.authService.logOut();
     this.router.navigate(['/login']);
     this.onClose();

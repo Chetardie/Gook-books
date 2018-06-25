@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'gook-register',
@@ -25,10 +25,12 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSignup() {
-    const email = this.registerForm.value.email;
-    const password = this.registerForm.value.password;
-    this.authService.registerUser(email, password);
+  private onSignup() {
+    const value = this.registerForm.getRawValue();
+    console.log(value);
+    // const email = this.registerForm.value.email;
+    // const password = this.registerForm.value.password;
+    // this.authService.registerUser(email, password);
   }
 
 }
