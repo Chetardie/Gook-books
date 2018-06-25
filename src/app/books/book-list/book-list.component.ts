@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { BooksService } from '../books.service';
-import { Book } from '../book.model';
-import { Subscription } from 'rxjs';
+import { Book } from '../models/book.model';
 
 @Component({
   selector: 'gook-book-list',

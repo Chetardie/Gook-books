@@ -3,7 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { BooksService } from '../books.service';
-import { Book, IBookAuthor } from '../book.model';
+import { Book } from '../models/book.model';
+import { IBookAuthor } from '../models/IBookAuthor';
 
 @Component({
   selector: 'gook-book-edit',
