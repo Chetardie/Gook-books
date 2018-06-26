@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'gook-login',
@@ -22,14 +23,13 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', {
         validators: [Validators.required, Validators.email]
       }),
-      password: new FormControl('', { validators: [Validators.required] })
+      password: new FormControl('', { validators: [Validators.required, Validators.minLength(6)] })
     });
   }
 
   onSubmit() {
-    const email = this.loginForm.value.email;
-    const password = this.loginForm.value.password;
-    this.authService.loginUser(email, password);
+    const value = this.loginForm.getRawValue();
+    this.authService.loginUser(value.email, value.password);
   }
 
 }
