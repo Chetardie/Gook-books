@@ -11,6 +11,7 @@ import { BooksService } from './books.service';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MaterialModule } from '../material.module';
     ReactiveFormsModule,
     BooksRoutingModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   providers: [BooksService]
 })
