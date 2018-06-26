@@ -10,8 +10,8 @@ import { Book } from '../models/book.model';
   styleUrls: ['./book-details.component.scss']
 })
 export class BookDetailsComponent implements OnInit {
-  book: Book;
-  id: number;
+  public book: Book;
+  private id: number;
 
   constructor(private booksService: BooksService,
               private route: ActivatedRoute,

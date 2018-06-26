@@ -9,13 +9,18 @@ import { AuthService } from '../auth.service';
   styleUrls: [ './login.component.scss' ]
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  public loginForm: FormGroup;
 
   constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
     this.initLoginForm();
+  }
+
+  public onSubmit() {
+    const value = this.loginForm.getRawValue();
+    this.authService.loginUser(value.email, value.password);
   }
 
   private initLoginForm(): void {
@@ -25,11 +30,6 @@ export class LoginComponent implements OnInit {
       }),
       password: new FormControl('', { validators: [Validators.required, Validators.minLength(6)] })
     });
-  }
-
-  onSubmit() {
-    const value = this.loginForm.getRawValue();
-    this.authService.loginUser(value.email, value.password);
   }
 
 }

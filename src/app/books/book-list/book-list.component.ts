@@ -11,16 +11,15 @@ import { Book } from '../models/book.model';
   styleUrls: ['./book-list.component.scss']
 })
 export class BookListComponent implements OnInit {
-  private booksSubscription: Subscription;
   public books: Book[];
   public searchText: string;
+  private booksSubscription: Subscription;
 
   constructor(private router: Router, private activeRoute: ActivatedRoute, private booksService: BooksService) { }
 
   ngOnInit() {
     this.booksSubscription = this.booksService.booksListChanged
-        .subscribe(
-            (books: Book[]) => this.books = books);
+        .subscribe((books: Book[]) => this.books = books);
     this.books = this.booksService.getBooks();
   }
 
