@@ -1,4 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+<mat-toolbar color="primary" fxLayout="row"  fxLayoutAlign="space-between center"  role="heading">
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div class="logo-container">
+    <a routerLink="/">
+      <img src="/assets/code-brackets.png" class="logo"  alt="LOGO">
+    </a>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li *ngIf="!authService.isAuthenticated()">
+        <a routerLink="/register">Signup</a>
+      </li>
+      <li *ngIf="!authService.isAuthenticated()">
+        <a routerLink="/login">Login</a>
+      </li>
+      <li *ngIf="authService.isAuthenticated()">
+        <a routerLink="/books">Books</a>
+      </li>
+      <li *ngIf="authService.isAuthenticated()">
+        <a routerLink="/">Quotes</a>
+      </li>
+      <li *ngIf="authService.isAuthenticated()">
+        <a style="cursor: pointer" (click)="onLogout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>
+<!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="#">
     <img src="/assets/code-brackets.png" width="60" height="60" alt="">
   </a>
@@ -32,4 +63,4 @@
       </li>
     </ul>
   </div>
-</nav>
+</nav> -->

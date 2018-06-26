@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { Book } from './book.model';
+import { Book } from './models/book.model';
 
 @Injectable()
 export class BooksService {
   public booksListChanged = new Subject<Book[]>();
 
   private books: Book[] = [
-    new Book({ title: 'Book 1', description: 'A super tasty schnitzel',
+    new Book({ title: 'Tom Soyer', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
+      author: { firstName: 'Mark', lastName: 'Twain'}}),
+    new Book({title: 'Racing cars', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
       author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),
-    new Book({title: 'Books 2', description: 'What else  you need to say?',
+      new Book({ title: 'Batman', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
+      author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),
+    new Book({title: 'Lord of the ring', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
       author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}})
   ];
 

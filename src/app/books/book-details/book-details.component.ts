@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { BooksService } from '../books.service';
-import { Book } from '../book.model';
+import { Book } from '../models/book.model';
 
 @Component({
   selector: 'gook-book-details',

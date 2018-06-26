@@ -1,3 +1,34 @@
-nav {
-  margin-bottom: 20px;
+.logo-container {
+  width: 60px;
+  height: 60px;
+}
+
+.logo-container a {
+  width: 100%;
+  height: 100%;
+}
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+
+.navigation-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-caption {
+  display: inline-block;
+  padding-left: 6px;
 }

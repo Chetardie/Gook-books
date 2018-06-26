@@ -1,8 +1,11 @@
-<gook-header></gook-header>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+    <gook-side-nav (closeSidenav)="sidenav.close()"></gook-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <gook-header (sidenavToggle)="sidenav.toggle()"></gook-header>
+    <main>
       <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
