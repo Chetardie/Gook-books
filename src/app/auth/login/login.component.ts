@@ -18,17 +18,15 @@ export class LoginComponent implements OnInit {
     this.initLoginForm();
   }
 
-  public onSubmit() {
+  public onLogin(): void {
     const value = this.loginForm.getRawValue();
     this.authService.loginUser(value.email, value.password);
   }
 
   private initLoginForm(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('', {
-        validators: [Validators.required, Validators.email]
-      }),
-      password: new FormControl('', { validators: [Validators.required, Validators.minLength(6)] })
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
   }
 
