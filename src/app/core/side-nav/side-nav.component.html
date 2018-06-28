@@ -11,7 +11,7 @@
     <mat-icon>book</mat-icon>
     <span class="nav-caption">Books</span>
   </a>
-  <a mat-list-item routerLink="/" routerLinkActive="active-link" (click)="onClose()" *ngIf="authService.isAuthenticated()">
+  <a mat-list-item routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" (click)="onClose()" *ngIf="authService.isAuthenticated()">
     <mat-icon>aspect_ratio</mat-icon>
     <span class="nav-caption">Qoutes</span>
   </a>

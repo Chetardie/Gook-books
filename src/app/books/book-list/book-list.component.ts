@@ -30,7 +30,7 @@ export class BookListComponent implements OnInit, OnDestroy {
     this.booksService.bookWasSelected.next(true);
   }
 
-  public onBookSelected() {
+  public onBookSelected(): void {
     this.booksService.bookWasSelected.next(true);
   }
 }

@@ -75,7 +75,7 @@ export class BookEditComponent implements OnInit {
     this.booksService.bookWasSelected.next(false);
   }
 
-  public onSave() {
+  public onSave(): void {
     this.booksService.bookWasSelected.next(false);
   }
 }

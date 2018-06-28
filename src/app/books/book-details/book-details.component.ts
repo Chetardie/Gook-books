@@ -36,7 +36,7 @@ export class BookDetailsComponent implements OnInit {
     this.router.navigate(['/books']);
   }
 
-  public onCloseDetails() {
+  public onCloseDetails(): void {
     this.booksService.bookWasSelected.next(false);
   }
 }
