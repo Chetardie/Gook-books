@@ -12,10 +12,10 @@ import { IBookAuthor } from '../models/IBookAuthor';
   styleUrls: [ './book-edit.component.scss' ]
 })
 export class BookEditComponent implements OnInit {
-  private id: number;
   public editMode: boolean = false;
   public bookForm: FormGroup;
   public book: Book;
+  private id: number;
 
   constructor(private route: ActivatedRoute, private router: Router, private booksService: BooksService) {
   }
