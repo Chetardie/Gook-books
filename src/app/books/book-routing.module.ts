@@ -8,6 +8,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 
 
 const booksRoutes: Routes = [
+  { path: '', redirectTo: '/books', pathMatch: 'full' },
   { path: 'books', component: BooksComponent, canActivate: [AuthGuardService], children: [
       { path: 'new', component: BookEditComponent },
       { path: ':id', component: BookDetailsComponent },

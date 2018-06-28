@@ -1,6 +1,9 @@
 <section>
   <mat-card>
     <h1>Edit book</h1>
+    <button mat-icon-button fxHide.gt-xs class="close-btn">
+      <mat-icon (click)="onCloseEdit()">close</mat-icon>
+    </button>
     <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
       <mat-form-field>
         <input 
@@ -35,14 +38,11 @@
                 placeholder="Last name">
               </mat-form-field>
         </div>
-      <button mat-raised-button color="accent" *ngIf="!editMode"  type="submit" [disabled]="!bookForm.valid">Add book</button>
-      <button mat-raised-button color="primary" *ngIf="editMode"  type="submit" [disabled]="!bookForm.valid">Save</button>
-      <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" *ngIf="!editMode"  type="submit" [disabled]="!bookForm.valid">Add book</button>
+          <button mat-raised-button color="primary" *ngIf="editMode" (click)="onSave()" type="submit" [disabled]="!bookForm.valid">Save</button>
+          <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+        </mat-card-actions>
     </form>
   </mat-card>
 </section>
-
-
-
-
-

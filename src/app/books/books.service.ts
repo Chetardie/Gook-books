@@ -6,9 +6,18 @@ import { Book } from './models/book.model';
 @Injectable()
 export class BooksService {
   public booksListChanged = new Subject<Book[]>();
+  public bookWasSelected = new Subject<boolean>();
 
   private books: Book[] = [
     new Book({ title: 'Tom Soyer', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
+      author: { firstName: 'Mark', lastName: 'Twain'}}),
+    new Book({title: 'Racing cars', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
+      author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),
+      new Book({ title: 'Batman', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
+      author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),
+    new Book({title: 'Lord of the ring', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
+      author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),
+      new Book({ title: 'Tom Soyer', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
       author: { firstName: 'Mark', lastName: 'Twain'}}),
     new Book({title: 'Racing cars', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
       author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),

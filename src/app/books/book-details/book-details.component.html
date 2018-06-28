@@ -1,12 +1,12 @@
 <section>
-  <mat-card 
-  [routerLink]="[index]"
-  routerLinkActive="active"
-  style="cursor: pointer">
+  <mat-card>
     <mat-card-header>
-      <mat-card-title><h1>{{ book.title }}</h1></mat-card-title>
-      <mat-card-subtitle><h4>{{book.author.firstName}} {{book.author.lastName}}</h4></mat-card-subtitle>
+      <mat-card-title><h2>{{ book.title }}</h2></mat-card-title>
+      <mat-card-subtitle><h3>{{book.author.firstName}} {{book.author.lastName}}</h3></mat-card-subtitle>
     </mat-card-header>
+    <button mat-icon-button fxHide.gt-xs class="close-btn">
+      <mat-icon (click)="onCloseDetails()">close</mat-icon>
+    </button>
     <mat-card-content>
       <p>
         {{ book.description }}
