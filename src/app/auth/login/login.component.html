@@ -26,8 +26,8 @@
       <mat-error>Invalid or missing password.</mat-error>
       <mat-hint *ngIf="!loginForm.controls['password'].errors" style="color: green;">Correct form of password</mat-hint>
     </mat-form-field>
-    <button *ngIf="!isLoading" type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
+    <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
   </form>
   
 </section>

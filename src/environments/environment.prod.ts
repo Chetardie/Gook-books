@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  firebaseApiKey: 'AIzaSyCwziy3qqY_9CCTX2n06N7lC8quH3Tc1vQ',
+  firebaseAuthDomain: 'gook-books.firebaseapp.com'
 };

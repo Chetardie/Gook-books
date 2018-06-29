@@ -27,6 +27,6 @@
 				<mat-hint *ngIf="!registerForm.controls['password'].errors" style="color: green;">Correct form of email</mat-hint>
 			</mat-form-field>
 			<button  type="submit" mat-raised-button color="primary" [disabled]="registerForm.invalid">Submit</button>
-			<mat-spinner *ngIf="isLoading"></mat-spinner>
+			<!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
 		</form>
 	</section>
