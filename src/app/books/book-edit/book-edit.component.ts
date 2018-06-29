@@ -53,7 +53,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
       this.store.dispatch( new BookListActions.UpdateBook( { index: this.editedBookIndex, book: newBook } ) );
       this.store.dispatch( new BookListActions.GetBook( this.editedBookIndex ) );
     } else {
-      this.store.dispatch( new BookListActions.AddBook( this.bookForm.value ) );
+      this.store.dispatch( new BookListActions.AddBook(newBook));
     }
 
     this.editMode = false;

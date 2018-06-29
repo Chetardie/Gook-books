@@ -9,6 +9,8 @@ export class Book implements  IBook {
   public quotes: string[] = [];
 
   constructor(bookInfo: { title: string, description: string, author: IBookAuthor }) {
+    this.rate = 0;
+    this.quotes = [];
     this.title = bookInfo.title;
     this.description = bookInfo.description;
     this.author = bookInfo.author;
