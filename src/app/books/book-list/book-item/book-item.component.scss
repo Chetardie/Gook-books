@@ -3,6 +3,10 @@ mat-card {
   outline: none;
 }
 
+mat-card:hover {
+  background-color: rgb(247, 247, 247);
+}
+
 mat-card-title {
   font-size: 20px;
 }

@@ -19,7 +19,7 @@ export class AuthService {
   public registerUser(email: string, password: string): void {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(response => {
-        this.router.navigate([ '/' ]);
+        this.router.navigate([ '/books' ]);
         firebase.auth().currentUser.getIdToken()
           .then((token: string) => AuthService.Token = token);
       })
@@ -30,7 +30,7 @@ export class AuthService {
   public loginUser(email: string, password: string): void {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(response => {
-          this.router.navigate([ '/' ]);
+          this.router.navigate([ '/books' ]);
           firebase.auth().currentUser.getIdToken()
             .then((token: string) => AuthService.Token = token);
         })

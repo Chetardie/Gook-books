@@ -71,5 +71,11 @@ export class BookEditComponent implements OnInit {
     });
   }
 
+  public onCloseEdit(): void {
+    this.booksService.bookWasSelected.next(false);
+  }
 
+  public onSave(): void {
+    this.booksService.bookWasSelected.next(false);
+  }
 }
