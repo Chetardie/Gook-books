@@ -4,11 +4,9 @@
     <input type="text" matInput placeholder="Search by title or author" aria-label="Search by title or author" aria-describedby="basic-addon2" [(ngModel)]="searchText">
   </mat-form-field>
   <div class="book-list">
-    <gook-book-item
-    *ngFor="let bookItem of books | filter: searchText; let i = index"
-    [book]="bookItem"
-    [index]="i"
-    (click)="onBookSelected()">
+    <gook-book-item (click)="onBookSelected(i)"
+    *ngFor="let bookItem of (bookListState | async).books | filter: searchText; let i = index"
+    [book]="bookItem">
     </gook-book-item>
   </div>
 </section>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
-import { AuthService } from '../auth.service';
+import * as fromApp from '../../store/app.reducers';
+import * as AuthActions from '../store/auth.actions';
 
 @Component({
   selector: 'gook-login',
@@ -11,7 +13,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
 
-  constructor(private authService: AuthService) {
+  constructor(private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit() {
@@ -20,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   public onLogin(): void {
     const value = this.loginForm.getRawValue();
-    this.authService.loginUser(value.email, value.password);
+    this.store.dispatch(new AuthActions.TrySignin({ username: value.email, password: value.password }));
   }
 
   private initLoginForm(): void {

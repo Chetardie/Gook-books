@@ -7,11 +7,10 @@ import { BooksComponent } from './books.component';
 import { BooksRoutingModule } from './book-routing.module';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { BookItemComponent } from './book-list/book-item/book-item.component';
-import { BooksService } from './books.service';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material.module';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MaterialModule,
     FlexLayoutModule
   ],
-  providers: [BooksService]
+  providers: []
 })
 export class BooksModule {
 

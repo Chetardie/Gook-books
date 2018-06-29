@@ -1,48 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
-import { BooksService } from '../books.service';
 import { Book } from '../models/book.model';
 import { IBookAuthor } from '../models/IBookAuthor';
+import { Store } from '@ngrx/store';
+import * as BookListActions from '../store/book-list.actions';
+import * as fromApp from '../../store/app.reducers';
 
-@Component({
+@Component( {
   selector: 'gook-book-edit',
   templateUrl: './book-edit.component.html',
   styleUrls: [ './book-edit.component.scss' ]
-})
-export class BookEditComponent implements OnInit {
+} )
+export class BookEditComponent implements OnInit, OnDestroy {
   public editMode: boolean = false;
   public bookForm: FormGroup;
-  public book: Book;
-  private id: number;
+  private storeSubscription: Subscription;
+  public editedBook: Book;
+  private editedBookIndex: number;
 
-  constructor(private route: ActivatedRoute, private router: Router, private booksService: BooksService) {
+  constructor( private route: ActivatedRoute,
+               private router: Router,
+               private store: Store<fromApp.AppState> ) {
   }
 
   ngOnInit() {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.id = +params[ 'id' ];
-          this.editMode = params[ 'id' ] != null;
-          this.initForm();
+    this.storeSubscription = this.store.select( 'bookList' )
+      .subscribe( ( data ) => {
+        if (data.editedBookIndex > -1) {
+          this.editedBook = data.editedBook;
+          this.editedBookIndex = data.editedBookIndex;
+          this.editMode = true;
+        } else {
+          this.editMode = false;
         }
-      );
 
+        this.initForm();
+      } );
+  }
+
+
+  ngOnDestroy() {
+    this.store.dispatch( new BookListActions.StopEdit() );
+    this.storeSubscription.unsubscribe();
   }
 
   public onSubmit(): void {
+    const newBook = new Book( this.bookForm.value );
     if (this.editMode) {
-      this.booksService.updateBook(this.id, this.bookForm.value);
+      this.store.dispatch( new BookListActions.UpdateBook( { index: this.editedBookIndex, book: newBook } ) );
+      this.store.dispatch( new BookListActions.GetBook( this.editedBookIndex ) );
     } else {
-      this.booksService.addBook(this.bookForm.value);
+      this.store.dispatch( new BookListActions.AddBook( this.bookForm.value ) );
     }
+
+    this.editMode = false;
     this.onCancel();
   }
 
   public onCancel(): void {
-    this.router.navigate([ '../' ], {relativeTo: this.route});
+    this.bookForm.reset();
+    this.router.navigate( [ '../' ], { relativeTo: this.route } );
   }
 
   private initForm(): void {
@@ -54,28 +74,19 @@ export class BookEditComponent implements OnInit {
     let bookDescription = '';
 
     if (this.editMode) {
-      const book = this.booksService.getBook(this.id);
-      bookTitle = book.title;
-      author = book.author;
-      bookDescription = book.description;
+      bookTitle = this.editedBook.title;
+      author = this.editedBook.author;
+      bookDescription = this.editedBook.description;
     }
 
 
-    this.bookForm = new FormGroup({
-      'title': new FormControl(bookTitle, Validators.required),
-      'author': new FormGroup({
-        'firstName': new FormControl(author.firstName, Validators.required),
-        'lastName': new FormControl(author.lastName, Validators.required)
-        }),
-      'description': new FormControl(bookDescription, Validators.required)
-    });
-  }
-
-  public onCloseEdit(): void {
-    this.booksService.bookWasSelected.next(false);
-  }
-
-  public onSave(): void {
-    this.booksService.bookWasSelected.next(false);
+    this.bookForm = new FormGroup( {
+      'title': new FormControl( bookTitle, Validators.required ),
+      'author': new FormGroup( {
+        'firstName': new FormControl( author.firstName, Validators.required ),
+        'lastName': new FormControl( author.lastName, Validators.required )
+      } ),
+      'description': new FormControl( bookDescription, Validators.required )
+    } );
   }
 }

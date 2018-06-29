@@ -11,19 +11,19 @@
   </div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-      <li *ngIf="!authService.isAuthenticated()">
+      <li *ngIf="!(authState | async).authenticated">
         <a routerLink="/register" routerLinkActive="active-link">Signup</a>
       </li>
-      <li *ngIf="!authService.isAuthenticated()">
+      <li *ngIf="!(authState | async).authenticated">
         <a routerLink="/login" routerLinkActive="active-link">Login</a>
       </li>
-      <li *ngIf="authService.isAuthenticated()">
+      <li *ngIf="(authState | async).authenticated">
         <a routerLink="/books" routerLinkActive="active-link">Books</a>
       </li>
-      <li *ngIf="authService.isAuthenticated()">
+      <li *ngIf="(authState | async).authenticated">
         <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Quotes</a>
       </li>
-      <li *ngIf="authService.isAuthenticated()">
+      <li *ngIf="(authState | async).authenticated">
         <a style="cursor: pointer" (click)="onLogout()">Logout</a>
       </li>
     </ul>

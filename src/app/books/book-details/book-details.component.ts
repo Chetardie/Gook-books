@@ -1,42 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { BooksService } from '../books.service';
 import { Book } from '../models/book.model';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducers';
+import * as BookListActions from '../store/book-list.actions';
+import { Subscription } from 'rxjs';
 
-@Component({
+@Component( {
   selector: 'gook-book-details',
   templateUrl: './book-details.component.html',
-  styleUrls: ['./book-details.component.scss']
-})
-export class BookDetailsComponent implements OnInit {
-  public book: Book;
-  private id: number;
+  styleUrls: [ './book-details.component.scss' ]
+} )
+export class BookDetailsComponent implements OnInit, OnDestroy {
+  public selectedBook: Book;
+  private selectedBookIndex: number;
+  private storeSubscription: Subscription;
 
-  constructor(private booksService: BooksService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+  constructor(private route: ActivatedRoute,
+               private router: Router,
+               private store: Store<fromApp.AppState> ) {
+  }
 
   ngOnInit() {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.id = +params['id'];
-          this.book = this.booksService.getBook(this.id);
-        }
-      );
+    this.storeSubscription = this.store.select( 'bookList' )
+      .subscribe( ( bookListState ) => {
+        this.selectedBook = bookListState.selectedBook;
+        this.selectedBookIndex = bookListState.selectedBookIndex;
+      });
+  }
+
+  ngOnDestroy() {
+    this.storeSubscription.unsubscribe();
   }
 
   public onEditBook(): void {
-    this.router.navigate(['edit'], {relativeTo: this.route});
+    this.store.dispatch( new BookListActions.StartEdit( this.selectedBookIndex ) );
+    this.router.navigate( [ 'edit' ], { relativeTo: this.route } );
   }
 
   public onDeleteBook(): void {
-    this.booksService.deleteBook(this.id);
-    this.router.navigate(['/books']);
-  }
-
-  public onCloseDetails(): void {
-    this.booksService.bookWasSelected.next(false);
+    this.store.dispatch( new BookListActions.DeleteBook( this.selectedBookIndex ) );
+    this.router.navigate( [ '/books' ] );
   }
 }
