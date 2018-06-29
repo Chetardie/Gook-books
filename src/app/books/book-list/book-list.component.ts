@@ -1,36 +1,32 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { BooksService } from '../books.service';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Book } from '../models/book.model';
+import { Store } from '@ngrx/store';
 
+import * as fromApp from '../../store/app.reducers';
+import * as BookListActions from '../store/book-list.actions';
 @Component({
   selector: 'gook-book-list',
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss']
 })
-export class BookListComponent implements OnInit, OnDestroy {
-  public books: Book[];
+export class BookListComponent implements OnInit {
   public searchText: string;
-  private booksSubscription: Subscription;
-  constructor(private router: Router, private activeRoute: ActivatedRoute, private booksService: BooksService) { }
+  public bookListState: Observable<{books: Book[]}>;
+
+  constructor(private router: Router, private activeRoute: ActivatedRoute, private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-    this.booksSubscription = this.booksService.booksListChanged
-        .subscribe((books: Book[]) => this.books = books);
-    this.books = this.booksService.getBooks();
+     this.bookListState = this.store.select('bookList');
+  }
 
+  public onBookSelected(index: number): void {
+      this.store.dispatch(new BookListActions.GetBook(index));
   }
-  ngOnDestroy() {
-    this.booksSubscription.unsubscribe();
-  }
+
   public onNewBookAdd(): void {
-    this.router.navigate(['new'], {relativeTo: this.activeRoute});
-    this.booksService.bookWasSelected.next(true);
-  }
-
-  public onBookSelected(): void {
-    this.booksService.bookWasSelected.next(true);
+    this.router.navigate(['new'], { relativeTo: this.activeRoute });
   }
 }

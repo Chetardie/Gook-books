@@ -1,21 +1,39 @@
 <mat-nav-list>
-  <a mat-list-item routerLink="/register" routerLinkActive="active-link" (click)="onClose()" *ngIf="!authService.isAuthenticated()">
+  <a mat-list-item routerLink="/register" routerLinkActive="active-link" (click)="onClose()" *ngIf="(authState | async).authenticated">
     <mat-icon>face</mat-icon>
     <span class="nav-caption">Signup</span>
   </a>
-  <a mat-list-item routerLink="/login" routerLinkActive="active-link" (click)="onClose()" *ngIf="!authService.isAuthenticated()">
+  <a mat-list-item routerLink="/login" routerLinkActive="active-link" (click)="onClose()" *ngIf="(authState | async).authenticated">
     <mat-icon>input</mat-icon>
     <span class="nav-caption">Login</span>
   </a>
-  <a mat-list-item routerLink="/books" routerLinkActive="active-link" (click)="onClose()" *ngIf="authService.isAuthenticated()">
+  <a mat-list-item routerLink="/books" routerLinkActive="active-link" (click)="onClose()" *ngIf="(authState | async).authenticated">
     <mat-icon>book</mat-icon>
     <span class="nav-caption">Books</span>
   </a>
-  <a mat-list-item routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" (click)="onClose()" *ngIf="authService.isAuthenticated()">
+  <a mat-list-item routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" (click)="onClose()" *ngIf="(authState | async).authenticated"></a>
+  <a mat-list-item routerLink="/register" routerLinkActive="active-link" (click)="onClose()" *ngIf="!(authState | async).authenticated">
+    <mat-icon>face</mat-icon>
+    <span class="nav-caption">Signup</span>
+  </a>
+  <a mat-list-item routerLink="/login" routerLinkActive="active-link" (click)="onClose()" *ngIf="!(authState | async).authenticated">
+    <mat-icon>input</mat-icon>
+    <span class="nav-caption">Login</span>
+  </a>
+  <a mat-list-item routerLink="/books" routerLinkActive="active-link" (click)="onClose()" *ngIf="(authState | async).authenticated">
+    <mat-icon>book</mat-icon>
+    <span class="nav-caption">Books</span>
+  </a>
+  <a mat-list-item 
+    routerLink="/" 
+    routerLinkActive="active-link" 
+    (click)="onClose()" 
+    [routerLinkActiveOptions]="{exact: true}"
+    *ngIf="(authState | async).authenticated">
     <mat-icon>aspect_ratio</mat-icon>
     <span class="nav-caption">Qoutes</span>
   </a>
-  <mat-list-item  *ngIf="authService.isAuthenticated()" routerLink="/">
+  <mat-list-item  *ngIf="(authState | async).authenticated" routerLink="/">
     <button class="logout-btn" mat-icon-button (click)="onLogout()">
       <mat-icon>eject</mat-icon>
       <span class="nav-caption">Logout</span>

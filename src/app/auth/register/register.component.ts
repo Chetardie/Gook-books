@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
-import { AuthService } from '../auth.service';
+import * as fromApp from '../../store/app.reducers';
+import * as AuthActions from '../store/auth.actions';
 
 @Component({
   selector: 'gook-register',
@@ -12,7 +13,7 @@ import { AuthService } from '../auth.service';
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     this.initRegisterForm();
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
 
   public onSignup(): void {
     const value = this.registerForm.getRawValue();
-    this.authService.registerUser(value.email, value.password);
+      this.store.dispatch(new AuthActions.TrySignup({ username: value.email, password: value.password}));
   }
 
   private initRegisterForm(): void {

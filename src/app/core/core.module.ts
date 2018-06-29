@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from '../app-routing.module';
-import { AuthService } from '../auth/auth.service';
 import { AuthGuardService } from '../auth/auth-guard.service';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -30,7 +28,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     HeaderComponent
   ],
   providers: [
-    AuthService,
     AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,
