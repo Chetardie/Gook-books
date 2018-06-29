@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
 
   public onSignup(): void {
     const value = this.registerForm.getRawValue();
-      this.store.dispatch(new AuthActions.TrySignup({ username: value.email, password: value.password}));
+    this.store.dispatch(new AuthActions.TrySignup({ username: value.email, password: value.password}));
   }
 
   private initRegisterForm(): void {
