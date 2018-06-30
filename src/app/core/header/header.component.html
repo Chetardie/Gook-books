@@ -21,7 +21,7 @@
         <button mat-button routerLink="/books" routerLinkActive="active-link">Books</button>
       </li>
       <li *ngIf="(authState | async).authenticated">
-        <button mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Quotes</button>
+        <button mat-button routerLink="/quotes" routerLinkActive="active-link">Quotes</button>
       </li>
       <li *ngIf="(authState | async).authenticated">
         <button mat-button style="cursor: pointer" (click)="onLogout()">Logout</button>

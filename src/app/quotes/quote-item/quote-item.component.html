@@ -1,0 +1,13 @@
+<mat-card 
+fxLayout="row" 
+fxLayout.xs="column" 
+fxLayoutAlign="space-between ceter">
+<mat-card-header>
+  <mat-card-title><mat-icon>format_quote</mat-icon>{{ quote.description }}<mat-icon>format_quote</mat-icon></mat-card-title>
+  <mat-card-subtitle>- {{ quote.author.firstName }} {{ quote.author.lastName }}</mat-card-subtitle>
+</mat-card-header>
+<mat-card-actions>
+  <button mat-button>Other quotes</button>
+  <button mat-button (click)="onDeleteQuote()">Delete</button>
+</mat-card-actions>
+</mat-card>
