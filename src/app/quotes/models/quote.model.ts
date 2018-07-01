@@ -1,4 +1,4 @@
-import { IBookAuthor } from "../books/models/IBookAuthor";
+import { IBookAuthor } from '../../books/models/IBookAuthor';
 
 export class Quote {
   public description: string;
