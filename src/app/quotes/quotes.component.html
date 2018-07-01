@@ -1,0 +1,20 @@
+<mat-tab-group>
+  <mat-tab label="All qoutes">
+    <section>
+        <mat-form-field class="search">
+          <input type="text" matInput placeholder="Search by title or author" aria-label="Search by title or author" aria-describedby="basic-addon2" [(ngModel)]="searchText">
+        </mat-form-field>
+        <gook-quote-item
+          *ngFor="let quoteItem of quotes; let i = index"
+          [quote]="quoteItem"
+          [index]="i"></gook-quote-item>
+    </section>
+  </mat-tab>
+  <mat-tab label="Add new qoute">
+      Content 3 
+  </mat-tab>
+  <mat-tab label="Qoutes by book">
+      Content 2 
+  </mat-tab>
+</mat-tab-group>
+

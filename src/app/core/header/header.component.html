@@ -12,19 +12,19 @@
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
       <li *ngIf="!(authState | async).authenticated">
-        <a routerLink="/register" routerLinkActive="active-link">Signup</a>
+        <button mat-button routerLink="/register" routerLinkActive="active-link">Signup</button>
       </li>
       <li *ngIf="!(authState | async).authenticated">
-        <a routerLink="/login" routerLinkActive="active-link">Login</a>
+        <button mat-button routerLink="/login" routerLinkActive="active-link">Login</button>
       </li>
       <li *ngIf="(authState | async).authenticated">
-        <a routerLink="/books" routerLinkActive="active-link">Books</a>
+        <button mat-button routerLink="/books" routerLinkActive="active-link">Books</button>
       </li>
       <li *ngIf="(authState | async).authenticated">
-        <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Quotes</a>
+        <button mat-button routerLink="/quotes" routerLinkActive="active-link">Quotes</button>
       </li>
       <li *ngIf="(authState | async).authenticated">
-        <a style="cursor: pointer" (click)="onLogout()">Logout</a>
+        <button mat-button style="cursor: pointer" (click)="onLogout()">Logout</button>
       </li>
     </ul>
   </div>

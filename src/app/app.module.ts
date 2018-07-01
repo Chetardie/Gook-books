@@ -20,6 +20,7 @@ import { SideNavComponent } from './core/side-nav/side-nav.component';
 import { reducers } from './store/app.reducers';
 import { AuthEffects } from './auth/store/auth.effects';
 import { environment } from '../environments/environment';
+import { QuotesModule } from './quotes/quotes.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { environment } from '../environments/environment';
     AuthModule,
     CoreModule,
     BooksModule,
+    QuotesModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule,
