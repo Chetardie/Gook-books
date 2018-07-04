@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { QuotesComponent } from './quotes.component';
+import { QuotesListComponent } from './quotes-list.component';
 import { QuoteItemComponent } from './quote-item/quote-item.component';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { QuoteItemComponent } from './quote-item/quote-item.component';
     FlexLayoutModule
   ],
   declarations: [
-    QuotesComponent,
+    QuotesListComponent,
     QuoteItemComponent
   ]
 })

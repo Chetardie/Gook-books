@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Quote } from '../quotes.model';
+import { Quote } from '../models/quote.model';
 
 @Component({
   selector: 'gook-quote-item',
