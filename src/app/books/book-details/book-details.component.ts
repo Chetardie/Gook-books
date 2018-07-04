@@ -17,7 +17,7 @@ import { NgLog } from '../../shared/decorators/class.logger.decorator';
 })
 @AutoUnsubscribe()
 @NgLog()
-export class BookDetailsComponent implements OnInit, OnDestroy {
+export class BookDetailsComponent implements OnInit {
   public selectedBook: Book;
   private selectedBookIndex: number;
   private storeSubscription: Subscription;
@@ -33,10 +33,6 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
         this.selectedBook = bookListState.selectedBook;
         this.selectedBookIndex = bookListState.selectedBookIndex;
       });
-  }
-
-  ngOnDestroy() {
-    this.storeSubscription.unsubscribe();
   }
 
   public onEditBook(): void {
