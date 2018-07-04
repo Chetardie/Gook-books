@@ -15,7 +15,7 @@ import { NgLog } from '../../shared/decorators/class.logger.decorator';
   templateUrl: './book-details.component.html',
   styleUrls: [ './book-details.component.scss' ]
 })
-@AutoUnsubscribe
+@AutoUnsubscribe()
 @NgLog()
 export class BookDetailsComponent implements OnInit, OnDestroy {
   public selectedBook: Book;

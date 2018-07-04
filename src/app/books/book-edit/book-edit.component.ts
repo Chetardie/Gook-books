@@ -15,7 +15,7 @@ import { AutoUnsubscribe } from '../../shared/decorators/autounsubscribe.decorat
   templateUrl: './book-edit.component.html',
   styleUrls: [ './book-edit.component.scss' ]
 } )
-@AutoUnsubscribe
+@AutoUnsubscribe()
 export class BookEditComponent implements OnInit, OnDestroy {
   public editMode: boolean = false;
   public bookForm: FormGroup;

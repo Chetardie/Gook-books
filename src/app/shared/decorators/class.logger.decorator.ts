@@ -16,11 +16,11 @@ export function NgLog(): ClassDecorator {
 
         constructor.prototype[hook] = function ( ...args ) {
           console.log(`%c ${component} - ${hook}`, `color: #4CAF50; font-weight: bold`, ...args);
-          
+
           original && original.apply(this, args);
-        }
+        };
       });
     }
 
-  }
+  };
 }
