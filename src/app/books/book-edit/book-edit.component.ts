@@ -8,12 +8,14 @@ import { IBookAuthor } from '../models/IBookAuthor';
 import { Store } from '@ngrx/store';
 import * as BookListActions from '../store/book-list.actions';
 import * as fromApp from '../../store/app.reducers';
+import { AutoUnsubscribe } from '../../shared/decorators/autounsubscribe.decorator';
 
 @Component( {
   selector: 'gook-book-edit',
   templateUrl: './book-edit.component.html',
   styleUrls: [ './book-edit.component.scss' ]
 } )
+@AutoUnsubscribe()
 export class BookEditComponent implements OnInit, OnDestroy {
   public editMode: boolean = false;
   public bookForm: FormGroup;
