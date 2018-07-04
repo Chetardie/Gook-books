@@ -46,7 +46,6 @@ export class BookEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.store.dispatch( new BookListActions.StopEdit() );
-    this.storeSubscription.unsubscribe();
   }
 
   public onSubmit(): void {
