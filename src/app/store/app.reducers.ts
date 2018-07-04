@@ -7,12 +7,12 @@ import * as fromAuth from '../auth/store/auth.reducers';
 export interface AppState {
   bookList: fromBookList.State;
   auth: fromAuth.State;
-  quotesList: fromQuotesList.State
+  quotesList: fromQuotesList.State;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
   bookList: fromBookList.bookListReducer,
   auth: fromAuth.authReducer,
   quotesList: fromQuotesList.quotesListReducer
-}
+};
 

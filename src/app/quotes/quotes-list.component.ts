@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import * as fromApp from '../store/app.reducers';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Book } from '../books/models/book.model';
+import { Store } from '@ngrx/store';
+
+import * as fromApp from '../store/app.reducers';
+import { Quote } from './models/quote.model';
 
 @Component({
   selector: 'gook-quotes-list',
@@ -10,7 +11,7 @@ import { Book } from '../books/models/book.model';
   styleUrls: ['./quotes-list.component.scss']
 })
 export class QuotesListComponent implements OnInit {
-  public quotesListState: Observable<{books: Book[]}>;
+  public quotesListState: Observable<{quotes: Quote[]}>;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
