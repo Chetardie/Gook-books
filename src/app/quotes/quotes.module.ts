@@ -7,7 +7,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { QuotesListComponent } from './quotes-list.component';
 import { QuoteItemComponent } from './quote-item/quote-item.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
