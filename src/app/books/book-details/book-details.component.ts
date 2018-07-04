@@ -7,11 +7,16 @@ import * as fromApp from '../../store/app.reducers';
 import * as BookListActions from '../store/book-list.actions';
 import { Subscription } from 'rxjs';
 
+import { AutoUnsubscribe } from '../../shared/decorators/autounsubscribe.decorator';
+import { NgLog } from '../../shared/decorators/class.logger.decorator';
+
 @Component( {
   selector: 'gook-book-details',
   templateUrl: './book-details.component.html',
   styleUrls: [ './book-details.component.scss' ]
-} )
+})
+@AutoUnsubscribe
+@NgLog()
 export class BookDetailsComponent implements OnInit, OnDestroy {
   public selectedBook: Book;
   private selectedBookIndex: number;
