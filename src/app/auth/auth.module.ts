@@ -7,11 +7,13 @@ import { RegisterComponent } from './register/register.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { MaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AuthFormComponent } from './auth-form/auth-form.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AuthFormComponent
   ],
   imports: [
     BrowserModule,

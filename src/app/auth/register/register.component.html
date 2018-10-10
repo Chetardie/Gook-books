@@ -1,32 +1,6 @@
 <section>
-		<form
-			fxLayout="column"
-			fxLayoutAlign="center center"
-			fxLayoutGap="10px"
-			(ngSubmit)="onSignup()" 
-			[formGroup]="registerForm">
-			<h2>Create new account</h2>
-			<mat-form-field>
-				<input
-					type="email"
-					matInput
-					placeholder="Your email"
-					formControlName="email">
-				<mat-hint *ngIf="registerForm.controls['email'].errors">Please enter a valid email.</mat-hint>
-				<mat-error>Invalid or missing email.</mat-error>
-				<mat-hint *ngIf="!registerForm.controls['email'].errors" style="color: green;">Correct form of email</mat-hint>
-			</mat-form-field>
-			<mat-form-field>
-				<input
-					type="password"
-					matInput
-					placeholder="Your password"
-					formControlName="password">
-				<mat-hint *ngIf="registerForm.controls['password'].errors">Please enter your password.</mat-hint>
-				<mat-error>Invalid or missing password.</mat-error>
-				<mat-hint *ngIf="!registerForm.controls['password'].errors" style="color: green;">Correct form of email</mat-hint>
-			</mat-form-field>
-			<button  type="submit" mat-raised-button color="primary" [disabled]="registerForm.invalid">Submit</button>
-			<!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
-		</form>
-	</section>
+	<gook-auth-form (submitted)='onSignup($event)'>
+		<h2>Create an acoount</h2>
+		<button  type="submit" mat-raised-button color="primary" [disabled]="authFormComponent?.authForm.invalid">Create account</button>
+	</gook-auth-form>
+</section>
