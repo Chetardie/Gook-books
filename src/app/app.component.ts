@@ -10,9 +10,6 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent implements OnInit {
     ngOnInit() {
-        firebase.initializeApp({
-            apiKey: environment.firebaseApiKey,
-            authDomain: environment.firebaseAuthDomain
-        });
+        firebase.initializeApp(environment.firebaseConfig);
     }
 }
