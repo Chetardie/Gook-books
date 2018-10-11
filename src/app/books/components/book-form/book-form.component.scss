@@ -1,0 +1,26 @@
+mat-form-field {
+    width: 100%;
+}
+  
+mat-card-actions {
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+}
+
+@media (max-width: 768px) {
+    mat-card {
+        min-height: 35vh;
+    } 
+}
+  
+  
+@media (max-width: 599px) {
+    section {
+    padding: 30px 15px 30px 15px;
+    }
+
+    mat-card {
+    min-height: 70vh;
+    } 
+}

@@ -2,11 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { Book } from '../models/book.model';
+import { Book } from '../../models/book.model';
 import { Store } from '@ngrx/store';
 
-import * as fromApp from '../../store/app.reducers';
-import * as BookListActions from '../store/book-list.actions';
+import * as fromApp from '../../../store/app.reducers';
+import * as BookListActions from '../../store/book-list.actions';
 @Component({
   selector: 'gook-book-list',
   templateUrl: './book-list.component.html',

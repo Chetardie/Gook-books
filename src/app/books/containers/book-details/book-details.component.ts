@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Book } from '../models/book.model';
+import { Book } from '../../models/book.model';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../store/app.reducers';
-import * as BookListActions from '../store/book-list.actions';
+import * as fromApp from '../../../store/app.reducers';
+import * as BookListActions from '../../store/book-list.actions';
 import { Subscription } from 'rxjs';
 
-import { AutoUnsubscribe } from '../../shared/decorators/autounsubscribe.decorator';
-import { NgLog } from '../../shared/decorators/class.logger.decorator';
+import { AutoUnsubscribe } from '../../../shared/decorators/autounsubscribe.decorator';
+import { NgLog } from '../../../shared/decorators/class.logger.decorator';
 
 @Component( {
   selector: 'gook-book-details',
@@ -17,7 +17,7 @@ import { NgLog } from '../../shared/decorators/class.logger.decorator';
 })
 @AutoUnsubscribe()
 @NgLog()
-export class BookDetailsComponent implements OnInit {
+export class BookDetailsComponent implements OnInit, OnDestroy {
   public selectedBook: Book;
   private selectedBookIndex: number;
   private storeSubscription: Subscription;
@@ -33,6 +33,10 @@ export class BookDetailsComponent implements OnInit {
         this.selectedBook = bookListState.selectedBook;
         this.selectedBookIndex = bookListState.selectedBookIndex;
       });
+  }
+
+  ngOnDestroy() {
+    this.storeSubscription.unsubscribe();
   }
 
   public onEditBook(): void {

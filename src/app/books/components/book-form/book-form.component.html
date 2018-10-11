@@ -1,0 +1,39 @@
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input 
+      matInput 
+      placeholder="Book title"
+      formControlName="title">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea 
+      matInput 
+      placeholder="Description"
+      formControlName="description"></textarea>
+  </mat-form-field>
+  <h3>Author</h3>
+  <div id="author" formGroupName="author">
+      <mat-form-field>
+          <input
+          matInput
+          id="firstName"
+          formControlName="firstName"
+          placeholder="Name"
+          type="text">
+      </mat-form-field>
+
+      <mat-form-field>
+          <input
+          matInput
+          id="lastName"
+          formControlName="lastName"
+          type="text"
+          placeholder="Last name">
+        </mat-form-field>
+    </div>
+    <mat-card-actions>
+      <ng-content select='button'></ng-content>
+      <a mat-raised-button color="warn" [routerLink]="['../']">Cancel</a>
+    </mat-card-actions>
+</form>

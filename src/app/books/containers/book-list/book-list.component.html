@@ -5,8 +5,9 @@
   </mat-form-field>
   <div class="book-list">
     <gook-book-item (click)="onBookSelected(i)"
-    *ngFor="let bookItem of (bookListState | async).books | filter: searchText; let i = index"
-    [book]="bookItem">
+      *ngFor="let bookItem of (bookListState | async).books | filter: searchText; index as i"
+      [book]="bookItem"
+      [index]='i'>
     </gook-book-item>
   </div>
 </section>

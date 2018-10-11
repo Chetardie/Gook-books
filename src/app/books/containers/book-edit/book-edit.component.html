@@ -1,0 +1,11 @@
+<section>
+  <mat-card>
+    <h1>Edit book</h1>
+    <gook-book-form 
+      [book]='(storeData$ | async)?.editedBook'
+      [bookIndex]='(storeData$ | async)?.editedBookIndex'
+      (submitted)='onEditBook($event)'>
+      <button mat-raised-button color="accent" type="submit" [disabled]="bookFormComponent?.bookForm.invalid">Save</button>
+    </gook-book-form>
+  </mat-card>
+</section>
