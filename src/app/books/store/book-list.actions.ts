@@ -2,12 +2,20 @@ import { Action } from '@ngrx/store';
 
 import { Book } from '../models/book.model';
 
+export const TRY_ADD_BOOK = 'TRY_ADD_BOOK';
 export const ADD_BOOK = 'ADD_BOOK';
 export const UPDATE_BOOK = 'UPDATE_BOOK';
 export const DELETE_BOOK = 'DELETE_BOOK';
 export const GET_BOOK_BY_ID = 'GET_BOOK_BY_ID';
 export const START_EDIT = 'START_EDIT';
 export const STOP_EDIT = 'STOP_EDIT';
+
+
+export class TryAddBook implements Action {
+    readonly type = TRY_ADD_BOOK;
+
+    constructor(public payload: Book) {  }
+}
 
 export class AddBook implements Action {
     readonly type = ADD_BOOK;
@@ -44,6 +52,7 @@ export class StopEdit implements Action {
 }
 
 export type BookListActions =
+    TryAddBook |
     AddBook |
     UpdateBook |
     GetBook |

@@ -26,8 +26,6 @@ export class BookComponent {
 
     public onCreateBook(event: { group: FormGroup, bookIndex: number}): void {
         const book = new Book(event.group.value);
-        this.store.dispatch( new BookListActions.AddBook(book));
-
-        this.router.navigate( [ '../' ], { relativeTo: this.route } );
+        this.store.dispatch( new BookListActions.TryAddBook(book));
     }
 }
