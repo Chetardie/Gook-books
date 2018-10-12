@@ -2,24 +2,7 @@ import { Book } from '../models/book.model';
 import * as BookListActions from './book-list.actions';
 
 const initialState: State = {
-    books: [
-    new Book({ title: 'Tom Soyer', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
-        author: { firstName: 'Mark', lastName: 'Twain'}}),
-    new Book({title: 'Racing cars', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
-        author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),
-        new Book({ title: 'Batman', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
-        author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),
-    new Book({title: 'Lord of the ring', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
-        author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),
-        new Book({ title: 'Tom Soyer', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
-        author: { firstName: 'Mark', lastName: 'Twain'}}),
-    new Book({title: 'Racing cars', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
-        author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),
-        new Book({ title: 'Batman', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
-        author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}}),
-    new Book({title: 'Lord of the ring', description: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
-        author: { firstName: 'Vladislav', lastName: 'Burdeniuk'}})
-    ],
+    books: [],
     selectedBook: null,
     selectedBookIndex: -1,
     editedBook: null,
@@ -39,7 +22,7 @@ export function bookListReducer(state = initialState, action: BookListActions.Bo
         case BookListActions.ADD_BOOK:
             return {
                 ...state,
-                books: [...state.books, action.payload]
+                books: [ action.payload, ...state.books ]
             };
         case BookListActions.UPDATE_BOOK:
             const book = state.books[action.payload.index];
@@ -66,6 +49,11 @@ export function bookListReducer(state = initialState, action: BookListActions.Bo
                 ...state,
                 selectedBook: selectedBook,
                 selectedBookIndex: action.payload
+            };
+        case BookListActions.SET_BOOKS:
+            return {
+                ...state,
+                books: [...state.books, ...action.payload]
             };
         case BookListActions.START_EDIT:
             const editedIngredient = {...state.books[action.payload]};

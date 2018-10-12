@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 
 import * as fromApp from '../../../store/app.reducers';
 import * as BookListActions from '../../store/book-list.actions';
+
 @Component({
   selector: 'gook-book-list',
   templateUrl: './book-list.component.html',
@@ -19,7 +20,8 @@ export class BookListComponent implements OnInit {
   constructor(private router: Router, private activeRoute: ActivatedRoute, private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-     this.bookListState = this.store.select('bookList');
+    this.store.dispatch(new BookListActions.TryGetBooks());
+    this.bookListState = this.store.select('bookList');
   }
 
   public onBookSelected(index: number): void {

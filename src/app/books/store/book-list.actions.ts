@@ -6,7 +6,9 @@ export const TRY_ADD_BOOK = 'TRY_ADD_BOOK';
 export const ADD_BOOK = 'ADD_BOOK';
 export const UPDATE_BOOK = 'UPDATE_BOOK';
 export const DELETE_BOOK = 'DELETE_BOOK';
+export const TRY_GET_BOOKS = 'TRY_GET_BOOKS';
 export const GET_BOOK_BY_ID = 'GET_BOOK_BY_ID';
+export const SET_BOOKS = 'SET_BOOKS';
 export const START_EDIT = 'START_EDIT';
 export const STOP_EDIT = 'STOP_EDIT';
 
@@ -35,10 +37,20 @@ export class DeleteBook implements Action {
     constructor(public payload: number) {}
 }
 
+export class TryGetBooks implements Action {
+    readonly type = 'TRY_GET_BOOKS';
+}
+
 export class GetBook implements Action {
     readonly type = GET_BOOK_BY_ID;
 
     constructor(public payload: number) {}
+}
+
+export class SetBooks implements Action {
+    readonly type = SET_BOOKS;
+
+    constructor(public payload: Book[]) {}
 }
 
 export class StartEdit implements Action {
@@ -55,7 +67,9 @@ export type BookListActions =
     TryAddBook |
     AddBook |
     UpdateBook |
+    TryGetBooks |
     GetBook |
+    SetBooks |
     DeleteBook |
     StartEdit |
     StopEdit;
