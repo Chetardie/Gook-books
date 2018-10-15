@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 
 import * as BookListActions from './book-list.actions';
 import { Book } from '../models/book.model';
+import { IBook } from '../models/IBook';
 
 @Injectable()
 export class BookListEffects {
@@ -30,7 +31,15 @@ export class BookListEffects {
         .pipe(take(1),
             switchMap(() => from(this.fetchBooks())),
             map((snapshot: any) => snapshot.val()),
-            map((value) => Object.values(value)),
+            map((value) => {
+                const keyValuePairs = Object.entries(value);
+                let books = [];
+                for (const keyValuePair of keyValuePairs) {
+                    (<IBook>keyValuePair[1]).uid = keyValuePair[0];
+                    books = [...books, new Book(<IBook>keyValuePair[1])];
+                }
+                return books;
+            }),
             map((books: Book[]) => new BookListActions.SetBooks(books)));
 
     constructor(private actions$: Actions, private router: Router) {
