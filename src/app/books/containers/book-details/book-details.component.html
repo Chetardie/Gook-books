@@ -1,18 +1,20 @@
 <section>
-  <mat-card *ngIf=" (bookList$ | async) as bookListState;">
-    <gook-book-details-header
-      [book]="bookListState.selectedBook">
-    </gook-book-details-header>
+  <mat-card *ngIf="(bookList$ | async) as state; else loading;">
+    <gook-book-header
+      [book]="state.selectedBook">
+    </gook-book-header>
     <button mat-icon-button fxHide.gt-xs class="close-btn">
       <!-- <mat-icon (click)="onCloseDetails()">close</mat-icon> -->
     </button>
-    <gook-book-details-content
-      [book]="bookListState.selectedBook">
-    </gook-book-details-content>
-    <gook-book-details-actions
-      [bookIndex]="bookListState.selectedBookIndex"
+    <gook-book-content
+      [book]="state.selectedBook">
+    </gook-book-content>
+    <gook-book-actions
+      [bookIndex]="state.selectedBookIndex"
       (edited)="onEditBook($event)"
       (deleted)="onDeleteBook($event)">
-    </gook-book-details-actions>
+    </gook-book-actions>
   </mat-card>
+
+  <ng-template #loading>Fetching books...</ng-template>
 </section>

@@ -1,9 +1,9 @@
 <section>
-    <mat-card>
-      <h1>Create new book</h1>
-      <gook-book-form
-        (submitted)='onCreateBook($event)'>
-        <button mat-raised-button color="accent" type="submit" [disabled]="bookFormComponent?.bookForm.invalid">Add book</button>
-      </gook-book-form>
-    </mat-card>
-  </section>
+  <mat-card>
+    <h1>Create new book</h1>
+    <gook-book-form
+      (submitted)='onCreateBook($event)'>
+      <button mat-raised-button color="accent" type="submit" [disabled]="bookFormComponent?.bookForm.invalid">Add book</button>
+    </gook-book-form>
+  </mat-card>
+</section>
