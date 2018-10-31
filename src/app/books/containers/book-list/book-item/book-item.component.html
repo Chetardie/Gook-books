@@ -2,14 +2,11 @@
   [routerLink]="[index]"
   routerLinkActive="active"
   style="cursor: pointer">
-  <mat-card-header>
-    <mat-card-title><h2>{{ book.title }}</h2></mat-card-title>
-    <mat-card-subtitle><h4>{{book.author.firstName}} {{book.author.lastName}}</h4></mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      {{ book.description }}
-    </p>
-  </mat-card-content>
+  <gook-book-details-header
+      [book]="book">
+    </gook-book-details-header>
+  <gook-book-details-content
+    [book]="book">
+  </gook-book-details-content>
 </mat-card>
 
