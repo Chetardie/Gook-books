@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Output, Input, EventEmitter, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, ChangeDetectionStrategy, Output, Input, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 
 import { Book } from '../../models/book.model';
@@ -10,39 +10,29 @@ import { Book } from '../../models/book.model';
     styleUrls: ['book-form.component.scss'],
     templateUrl: 'book-form.component.html'
 })
-export class BookFormComponent implements OnInit {
+export class BookFormComponent implements OnInit, OnChanges {
     @Input() book: Book;
     @Input() bookIndex: number;
     @Output() submitted: EventEmitter<{ group: FormGroup, bookIndex?: number }> =
                         new EventEmitter<{ group: FormGroup, bookIndex?: number }>();
-    public bookForm: FormGroup;
+
+    public bookForm: FormGroup = this.fb.group({
+        title: ['', Validators.required],
+        author: this.fb.group({
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required]
+        }),
+        description: ['', Validators.required]
+    });
     
-    constructor() {
+    constructor(private fb: FormBuilder) {
     }
 
-    ngOnInit() {
-        this.initForm(this.book);
-    }
+    ngOnInit() {}
 
-    public initForm(bookInfo?: Book): void {
-        if (bookInfo) {
-            this.bookForm = new FormGroup( {
-                'title': new FormControl( bookInfo.title, Validators.required ),
-                'author': new FormGroup( {
-                    'firstName': new FormControl( bookInfo.author.firstName, Validators.required ),
-                    'lastName': new FormControl( bookInfo.author.lastName, Validators.required )
-                } ),
-                'description': new FormControl( bookInfo.description, Validators.required )
-            });
-        } else {
-            this.bookForm = new FormGroup( {
-                'title': new FormControl( '', Validators.required ),
-                'author': new FormGroup( {
-                    'firstName': new FormControl( '', Validators.required ),
-                    'lastName': new FormControl( '', Validators.required )
-                } ),
-                'description': new FormControl( '', Validators.required )
-            });
+    ngOnChanges(simpleChanges: SimpleChanges) {
+        if (this.book) {
+            this.bookForm.patchValue(this.book);
         }
     }
 

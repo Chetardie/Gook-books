@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Book } from '../../models/book.model';
 
@@ -12,12 +12,6 @@ import { Book } from '../../models/book.model';
     </mat-card-header>
     `
 })
-export class BookHeaderComponent implements OnInit {
+export class BookHeaderComponent {
     @Input() book: Book;
-
-    ngOnInit() {
-        console.log('Component initialized, ', this.book);
-    }
-
-
 }

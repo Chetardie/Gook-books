@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'gook-book-actions',
@@ -10,14 +10,10 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
     </mat-card-actions>
   `
 })
-export class BookActionsComponent implements OnInit {
+export class BookActionsComponent {
     @Input() bookIndex: number;
     @Output() edited: EventEmitter<number> = new EventEmitter<number>();
     @Output() deleted: EventEmitter<number> = new EventEmitter<number>();
-
-    ngOnInit() {
-        console.log('Component initialized, ', this.bookIndex);
-    }
 
     public onEdit(): void {
         this.edited.emit(this.bookIndex);
