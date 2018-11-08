@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Router } from '@angular/router';
 import { map, switchMap, take } from 'rxjs/operators';
 import { from } from 'rxjs';
@@ -16,8 +16,8 @@ export class BookListEffects {
 
     @Effect()
     addBook = this.actions$
-        .ofType(BookListActions.TRY_ADD_BOOK)
-        .pipe(map((action: BookListActions.TryAddBook) => action.payload),
+        .pipe(ofType(BookListActions.TRY_ADD_BOOK),
+            map((action: BookListActions.TryAddBook) => action.payload),
             switchMap((data: Book) => from(this.addNewBook(data))),
             switchMap(() => from(firebase.database().ref('/books/' + this.postKey).once('value'))),
             map((snapshot: any) => {
@@ -27,8 +27,8 @@ export class BookListEffects {
 
     @Effect()
     getBooks = this.actions$
-        .ofType(BookListActions.TRY_GET_BOOKS)
-        .pipe(take(1),
+        .pipe(ofType(BookListActions.TRY_GET_BOOKS),
+            take(1),
             switchMap(() => from(this.fetchBooks())),
             map((snapshot: any) => snapshot.val()),
             map((value) => {
