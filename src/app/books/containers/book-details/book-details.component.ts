@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { Observable } from 'rxjs/internal/Observable';
+
 import { Book } from '../../models/book.model';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../../store/app.reducers';
 import * as BookListActions from '../../store/book-list.actions';
-import { Subscription } from 'rxjs';
 
 import { AutoUnsubscribe } from '../../../shared/decorators/autounsubscribe.decorator';
 import { NgLog } from '../../../shared/decorators/class.logger.decorator';
@@ -18,9 +19,7 @@ import { NgLog } from '../../../shared/decorators/class.logger.decorator';
 @AutoUnsubscribe()
 @NgLog()
 export class BookDetailsComponent implements OnInit, OnDestroy {
-  public selectedBook: Book;
-  private selectedBookIndex: number;
-  private storeSubscription: Subscription;
+  public bookList$: Observable<{ selectedBook: Book, selectedBookIndex: number}>;
 
   constructor(private route: ActivatedRoute,
                private router: Router,
@@ -28,24 +27,18 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.storeSubscription = this.store.select( 'bookList' )
-      .subscribe( ( bookListState ) => {
-        this.selectedBook = bookListState.selectedBook;
-        this.selectedBookIndex = bookListState.selectedBookIndex;
-      });
+    this.bookList$ = this.store.select('bookList');
   }
 
-  ngOnDestroy() {
-    this.storeSubscription.unsubscribe();
-  }
+  ngOnDestroy() {}
 
-  public onEditBook(): void {
-    this.store.dispatch( new BookListActions.StartEdit( this.selectedBookIndex ) );
+  public onEditBook(selectedBookIndex: number): void {
+    this.store.dispatch( new BookListActions.StartEdit( selectedBookIndex ) );
     this.router.navigate( [ 'edit' ], { relativeTo: this.route } );
   }
 
-  public onDeleteBook(): void {
-    this.store.dispatch( new BookListActions.DeleteBook( this.selectedBookIndex ) );
+  public onDeleteBook(selectedBookIndex: number): void {
+    this.store.dispatch( new BookListActions.DeleteBook( selectedBookIndex ) );
     this.router.navigate( [ '/books' ] );
   }
 }

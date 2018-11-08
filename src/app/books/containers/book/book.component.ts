@@ -20,9 +20,7 @@ import { BookFormComponent } from '../../components/book-form/book-form.componen
 export class BookComponent {
     @ContentChild(BookFormComponent) bookFormComponent: BookFormComponent;
 
-    constructor(private store: Store<fromApp.AppState>,
-                private router: Router,
-                private route: ActivatedRoute) {}
+    constructor(private store: Store<fromApp.AppState>) {}
 
     public onCreateBook(event: { group: FormGroup, bookIndex: number}): void {
         const book = new Book(event.group.value);

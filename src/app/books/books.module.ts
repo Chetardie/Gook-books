@@ -18,6 +18,9 @@ import { BookItemComponent } from './containers/book-list/book-item/book-item.co
 import { BookDetailsComponent } from './containers/book-details/book-details.component';
 import { BookFormComponent } from './components/book-form/book-form.component';
 import { BookComponent } from './containers/book/book.component';
+import { BookContentComponent } from './components/book-content/book-content.component';
+import { BookActionsComponent } from './components/book-actions/book-actions.component';
+import { BookHeaderComponent } from './components/book-header/book-header.component';
 
 
 @NgModule({
@@ -27,6 +30,9 @@ import { BookComponent } from './containers/book/book.component';
     BookEditComponent,
     BookItemComponent,
     BookDetailsComponent,
+    BookHeaderComponent,
+    BookContentComponent,
+    BookActionsComponent,
     BookComponent,
     BookFormComponent
   ],

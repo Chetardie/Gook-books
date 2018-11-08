@@ -1,20 +1,20 @@
 <section>
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title><h2>{{ selectedBook?.title }}</h2></mat-card-title>
-      <mat-card-subtitle><h3>{{ selectedBook?.author.firstName}} {{ selectedBook?.author.lastName}}</h3></mat-card-subtitle>
-    </mat-card-header>
+  <mat-card *ngIf="(bookList$ | async) as state; else loading;">
+    <gook-book-header
+      [book]="state.selectedBook">
+    </gook-book-header>
     <button mat-icon-button fxHide.gt-xs class="close-btn">
       <!-- <mat-icon (click)="onCloseDetails()">close</mat-icon> -->
     </button>
-    <mat-card-content>
-      <p>
-        {{ selectedBook?.description }}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="accent" (click)="onEditBook()">Edit book info</button>
-      <button mat-raised-button color="warn" (click)="onDeleteBook()">Delete</button>
-    </mat-card-actions>
+    <gook-book-content
+      [book]="state.selectedBook">
+    </gook-book-content>
+    <gook-book-actions
+      [bookIndex]="state.selectedBookIndex"
+      (edited)="onEditBook($event)"
+      (deleted)="onDeleteBook($event)">
+    </gook-book-actions>
   </mat-card>
+
+  <ng-template #loading>Fetching books...</ng-template>
 </section>

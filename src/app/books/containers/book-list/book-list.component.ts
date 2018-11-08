@@ -15,13 +15,13 @@ import * as BookListActions from '../../store/book-list.actions';
 })
 export class BookListComponent implements OnInit {
   public searchText: string;
-  public bookListState: Observable<{books: Book[]}>;
+  public bookListState$: Observable<{books: Book[]}>;
 
   constructor(private router: Router, private activeRoute: ActivatedRoute, private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     this.store.dispatch(new BookListActions.TryGetBooks());
-    this.bookListState = this.store.select('bookList');
+    this.bookListState$ = this.store.select('bookList');
   }
 
   public onBookSelected(index: number): void {
