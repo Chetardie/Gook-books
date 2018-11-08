@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { Book } from '../../models/book.model';
 
 @Component({
     selector: 'gook-book-header',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['book-header.component.scss'],
     template: `
     <mat-card-header>

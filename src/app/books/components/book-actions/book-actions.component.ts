@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'gook-book-actions',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['book-actions.component.scss'],
     template: `
     <mat-card-actions>
